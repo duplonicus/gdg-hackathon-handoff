@@ -243,8 +243,8 @@ Every arm alone, on the leaker questions (467 leaker pictures, 2,745 clean):
 
 ## Links
 
-- **Notebook:** https://www.kaggle.com/code/duplonicus/humanoid-decision-ladder-results: recomputes the test04 and test05 numbers from the decision logs and checks them against the published ones. Its dataset, https://www.kaggle.com/datasets/duplonicus/humanoid-decision-ladder-logs, also holds the raw test04 and test05 logs that `VALIDATION.md` cites.
+- **Notebook:** [https://www.kaggle.com/code/duplonicus/humanoid-decision-ladder-results](https://www.kaggle.com/code/duplonicus/humanoid-decision-ladder-results): recomputes the test04 and test05 numbers from the decision logs and checks them against the published ones. Its dataset, https://www.kaggle.com/datasets/duplonicus/humanoid-decision-ladder-logs, also holds the raw test04 and test05 logs that `VALIDATION.md` cites.
 - **Video:** https://youtu.be/HZKD2ckHXWo (5:01): the system end to end, Phase 1 and Phase 2, with a hand-off to a person, the model going down and a timeout to the safe answer.
-- **Code:** https://github.com/duplonicus/gdg-hackathon-handoff: the full project, with `VALIDATION.md` (every number, the command behind it, and what it does not show).
+- **Code:** [https://github.com/duplonicus/gdg-hackathon-handoff](https://github.com/duplonicus/gdg-hackathon-handoff): the full project, with `VALIDATION.md` (every number, the command behind it, and what it does not show).
 
 Code and results: every result above has a row in `VALIDATION.md` with the command that produced it and what it does not show.
