@@ -1,0 +1,44 @@
+[project]
+name = "mh3-genesis"
+version = "1.0.0"
+description = "Hackathon starter kit for controlling the Mirsee Robotics MH3 in Genesis."
+readme = "README.md"
+authors = [
+    { name = "Steven Rice", email = "srice@datarealminc.com" }
+]
+requires-python = ">=3.13,<3.14"
+dependencies = [
+    "genesis-world[usd]==1.4.3",
+    # PyMeshLab's Windows wheels require this, but its Linux metadata omits it.
+    "msvc-runtime==14.44.35112; sys_platform == 'win32'",
+    "numpy==2.5.3",
+    "pillow==11.3.0",
+    "pyyaml==6.0.3",
+    "scipy==1.18.1",
+    "torch==2.14.1",
+]
+
+[project.scripts]
+mh3-genesis = "mh3_genesis:main"
+
+[tool.ruff]
+line-length = 120
+target-version = "py313"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-p no:launch_ros -p no:launch_testing"
+
+[tool.uv]
+prerelease = "disallow"
+[build-system]
+requires = ["uv_build==0.12.24"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "packaging==26.3",
+    "pytest==9.1.1",
+    "ruff==0.16.10",
+    "tomlkit==0.15.1",
+]

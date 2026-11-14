@@ -1,0 +1,30 @@
+output/
+.agents/
+.idea/
+.pytest_cache/
+.ruff_cache/
+.setup/
+.uv/
+.venv/
+.vscode/
+.vs/
+__pycache__/
+*.py[cod]
+
+# films as code (/motion): renders and probes stay local
+media/**/out/
+media/**/sub/
+media/**/sub_draft/
+media/**/probe/
+
+# secrets (Windows git has no global excludes file)
+.env
+.claude/settings.local.json
+config/public_scan.local.txt
+
+# papers under arXiv's non-exclusive licence: kept locally, not redistributed (index entries are committed)
+docs/papers/2303.07280-vlm-success-detectors.pdf
+docs/papers/2609.03611-failbench.pdf
+
+# meshes made at run time
+src/handoff/assets/generated/

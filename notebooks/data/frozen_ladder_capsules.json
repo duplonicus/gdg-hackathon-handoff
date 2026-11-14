@@ -1,0 +1,39 @@
+{
+ "rungs": [
+  "intern-4b-vision",
+  "d3-27b-vision"
+ ],
+ "fit": "per question",
+ "human_cost": 0.2,
+ "thresholds": {
+  "intern-4b-vision": {
+   "leak_block": 0.3,
+   "leak_capsule": 0.8,
+   "leaker_landed": 0.9,
+   "tray_clear": 0.8,
+   "where_needed": 0.5
+  },
+  "d3-27b-vision": {
+   "leak_block": 1.0,
+   "leak_capsule": 0.85,
+   "leaker_landed": 0.3,
+   "tray_clear": 0.65,
+   "where_needed": 0.3
+  }
+ },
+ "prediction": {
+  "value": 0.9836,
+  "judgement_value": 0.9836,
+  "human_rate": 0.0293,
+  "acted_wrong": 0.0053,
+  "confidently_wrong": 0.0005,
+  "alone_right": 0.9654,
+  "judgement_human_rate": 0.0293,
+  "judgement_acted_wrong": 0.0053,
+  "judgement_confidently_wrong": 0.0005,
+  "judgement_alone_right": 0.9654,
+  "judgement_value_min": 0.9805,
+  "judgement_value_max": 0.9883
+ },
+ "source": "sel03 (output/capsules/sel03/frozen-ladder.json); docs/PREREG_CAPSULES.md, committed 0981889 before test05 existed"
+}

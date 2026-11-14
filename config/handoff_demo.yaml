@@ -1,0 +1,115 @@
+# Demo config for the handoff package: viewer and wall-clock pacing on, all robot cameras on for the control panel.
+# config/handoff.yaml is the headless one; the kit's config/mh3.yaml stays untouched.
+robot_usd: ../assets/MH3.usd
+backend: auto
+dt: 0.01
+realtime: true
+show_viewer: true
+viewer_refresh_rate: 60  # native Windows holds real time at 60 Hz (measured Oct 11); under WSL use 30, where 60 stalls the physics loop on every redraw
+visual_face_ratio: null  # full meshes: native Windows draws them at 0.97x real time (measured Oct 11). Under WSL set 0.25: Mesa there draws the full 2.3 M-vertex robot at 120 ms a frame
+gravity: [0.0, 0.0, -9.81]
+spawn_position: [-1.2, 0.0, 0.0]
+spawn_euler_deg: [0.0, 0.0, 0.0]
+position_kp: 350.0
+position_kv: 35.0
+enable_gravity_compensation: false  # measured Oct 11: 4.8x faster, 1.4 mm droop over 3 s on the kit gains
+
+# Joint-specific gains reflect the physical actuator power distribution.
+# Shoulder and elbow pitch actuators carry substantial cantilever loads and receive higher stiffness.
+joint_kp:
+  left_1: 800.0
+  left_2: 800.0
+  left_3: 500.0
+  left_4: 800.0
+  left_5: 500.0
+  left_6: 300.0
+  left_7: 300.0
+  right_1: 800.0
+  right_2: 800.0
+  right_3: 500.0
+  right_4: 800.0
+  right_5: 500.0
+  right_6: 300.0
+  right_7: 300.0
+  head_yaw: 200.0
+  head_pitch: 200.0
+
+joint_kv:
+  left_1: 80.0
+  left_2: 80.0
+  left_3: 50.0
+  left_4: 80.0
+  left_5: 50.0
+  left_6: 30.0
+  left_7: 30.0
+  right_1: 80.0
+  right_2: 80.0
+  right_3: 50.0
+  right_4: 80.0
+  right_5: 50.0
+  right_6: 30.0
+  right_7: 30.0
+  head_yaw: 20.0
+  head_pitch: 20.0
+
+slider_position_kp: 350000.0
+slider_position_kv: 4000.0
+slider_max_velocity_mps: 0.008
+slider_max_reference_lead_m: 0.015
+slider_max_force_n: 400.0
+wheel_radius_m: 0.1
+wheel_separation_m: 0.45
+max_linear_velocity_mps: 0.6
+max_angular_velocity_radps: 2.0
+dashboard_camera_fps: 15.0
+drive_command_timeout_s: 0.3
+
+# The ready home pose holds both forearms forward, levels the end effectors, and points the head forward.
+initial_positions:
+  head_yaw: 0.0
+  head_pitch: 0.0
+  left_1: 0.0
+  left_2: 0.0
+  left_3: 0.0
+  left_4: 0.75
+  left_5: 0.0
+  left_6: 0.0
+  left_7: 0.0
+  right_1: 0.0
+  right_2: 0.0
+  right_3: 0.0
+  right_4: 0.65
+  right_5: 0.0
+  right_6: 0.0
+  right_7: 0.0
+
+# Camera feeds configuration.
+# Available feeds: head_left, head_right, head_depth, base_left, base_right, base_depth.
+# Mounting links, transforms, optical FOV (77.95° V / 104.63° H), and framerate (15.0 FPS) are locked physical hardware specifications.
+cameras:
+  head_left:
+    enabled: true
+    format: png
+    quality: 100
+    width: 480
+  head_right:
+    enabled: true
+    format: jpeg
+    quality: 100
+  head_depth:
+    enabled: true
+    format: jpeg
+    quality: 100
+  base_left:
+    enabled: true
+    format: jpeg
+    quality: 100
+  base_right:
+    enabled: false
+    format: jpeg
+    quality: 100
+  base_depth:
+    enabled: true
+    format: jpeg
+    quality: 100
+

@@ -1,0 +1,20 @@
+# The robot's sensors for the handoff package (GenesisSimulator reads this by default; FakeSimulator takes the same
+# SensorConfig). This file says which sensors are on and where they sit. What each part reads like (noise, resolution,
+# range) is the cited datasheet figures in src/handoff/sim/base.py (ImuSpec, JointTorqueSpec, SkinSpec, FingertipSpec),
+# never set here, so a run cannot quietly use made-up numbers.
+#
+# Off: enabled: false, or GenesisSimulator(..., sensors=None). Every read_* then returns empty.
+enabled: true
+seed: 0  # the fingertip FSR gains (part-to-part spread) and the FSR and skin reading noise; Genesis draws the IMU and torque noise
+
+# One part everywhere, the Stereolabs ZED X IMU, so placement is the only variable. placement -> the kit's link name.
+# The head camera is a ZED X Mini and the base camera a ZED X, so those two match the hardware's own IMUs.
+imu_placements:
+  left_hand: left_gripper_base  # the wrist: the hand's root link
+  head: head_camera_mount
+  base: mobile_base
+  torso: torso_base  # the torso link on the lift slider; the MH3 has no separate chest link
+
+joint_torque_arms: [left]  # a JointTorque sensor over left_1 .. left_7
+tactile_arms: [left]  # skin on the palm (gripper_base) and every finger and thumb segment short of the tip
+fingertip_arms: [left]  # an FSR on each tip: index, middle, ring, little, thumb (tip link plus its force_sensor pad)

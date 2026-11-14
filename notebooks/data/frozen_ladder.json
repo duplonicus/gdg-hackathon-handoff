@@ -1,0 +1,26 @@
+{
+ "source": "frozen ladder of docs/PREREG.md (scripts/freeze_ladder.py freeze on all of test03)",
+ "frozen_at_commit": "392271526233b3d403f6f5118bdc588b4b7264ab",
+ "rungs": [
+  "d3-27b-vision"
+ ],
+ "thresholds": {
+  "d3-27b-vision": 0.8
+ },
+ "fit": "per rung",
+ "human_cost": 0.2,
+ "test03_prediction": {
+  "value": 0.902,
+  "judgement_value": 0.923,
+  "human_rate": 0.3111,
+  "acted_wrong": 0.0179,
+  "confidently_wrong": 0.0097,
+  "alone_right": 0.671,
+  "judgement_human_rate": 0.207,
+  "judgement_acted_wrong": 0.0178,
+  "judgement_confidently_wrong": 0.014,
+  "judgement_alone_right": 0.7752,
+  "judgement_value_min": 0.8987,
+  "judgement_value_max": 0.9474
+ }
+}

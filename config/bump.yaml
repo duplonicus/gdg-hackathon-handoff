@@ -1,0 +1,41 @@
+# How a guarded wrist move feels a bump (src/handoff/bump.py says how each detector works). GenesisSimulator and
+# FakeSimulator read this file by default; set sim.bump_config to a BumpConfig to override it in code.
+#
+# bump_sensor decides the stop: hand_imu | head_imu | base_imu | torso_imu | joint_torque | tactile | contact_truth.
+# contact_truth is the simulator's contact solver, TRUTH ONLY: the reference the probe scores the others against,
+# never a sensor the robot has. hand_imu is the default until scripts/score_bump_sensors.py picks a winner on the
+# probe's traces (scripts/probe_bump_sensors.py); its picked thresholds replace the starting ones below.
+bump_sensor: hand_imu
+monitor_all: true  # run every other detector the robot carries too, for the panel and the log; only bump_sensor stops the arm
+truth_every: 5  # contact_truth only: steps between contact reads
+
+# The starting torque threshold is 6 standard deviations of the sensor's own cited noise after the detector's filtering
+# (the noise figures and their sources are in src/handoff/sim/base.py), so noise alone almost never trips it. The IMU's
+# is raised above that by the one measurement there is so far (below). Neither says how big a real bump is: the probe
+# measures that, and score_bump_sensors.py's picks replace these.
+imu:
+  # ZED X IMU: 2.3 mg/sqrt(Hz) -> sigma 0.226 m/s^2 per axis per sample at dt 0.01. Minus the mean of the 5 samples
+  # before: sigma 0.226 * sqrt(1 + 1/5) = 0.247 per axis, so 6 sigma would be 1.5. But the arm's own motion passes
+  # that: in the Oct 21 CPU smoke check (exploratory: 3 clean moves, a slow press and a fast crossing into a wall, one
+  # Genesis CPU run) a clean 6 cm lift from rest peaked at 2.15 on the hand IMU, while the slow press peaked at 5.9 and
+  # the crossing at 50. A CPU smoke of the probe (2 seeds x 2 speeds, carrying a welded part over the good tray)
+  # then gave clean crossings up to 1.25 and clipped ones 10 to 15. 3.0 sits between, until the probe runs on many moves.
+  threshold: 3.0
+  baseline_s: 0.05
+  hold: 2
+joint_torque:
+  # Joint torque with a motor-current estimate's noise, sigma 0.1638 N*m per sample (Grinberg & Ding). That figure is
+  # a static bench error, and the sim's dynamics model is exact, so this threshold holds in the sim only; a real arm
+  # needs its own (friction and model error do not filter out). Through the observer at gain 25/s,
+  # dt 0.01 (alpha 0.25): sigma 0.1638 * sqrt(0.25 / 1.75) = 0.062; plus the tare's own error, 0.1638 / sqrt(10) =
+  # 0.052; together 0.081, and 6 sigma = 0.49, rounded to 0.5.
+  threshold: 0.5
+  gain: 25.0
+  tare_s: 0.1
+  hold: 2
+tactile:
+  # FlexiForce A201 noise is 2.5% of the force (an untouched link reads 0), so this is a design floor, not a noise
+  # multiple: 0.5 N is 11% of the A201's 4.4 N range and 20 times its noise at a 1 N grip.
+  threshold: 0.5
+  tare_s: 0.05
+  hold: 1

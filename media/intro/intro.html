@@ -1,0 +1,30 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Kaggle intro</title>
+<style>
+@font-face{font-family:Patrick;src:url(assets/patrick.woff2) format('woff2')}
+html,body{margin:0;background:#333;overflow:hidden}
+#stage{position:relative;width:1920px;height:1080px;overflow:hidden;background:#fbfaf5;color:#2b2b2b}
+#world,#paper,#paperIn{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0}
+#world{z-index:1}
+#gtop{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0;z-index:7;display:none;pointer-events:none}
+#gterm{position:absolute;left:1000px;top:520px;width:1600px;height:1000px;transform-origin:0 0;transform:scale(.1875)}
+#gterm .ln{position:absolute;left:80px;font-family:'Ubuntu Mono',monospace;white-space:pre;line-height:1.2;color:transparent}
+#paper{z-index:5;background:#fbfaf5;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+.el{position:absolute;left:0;top:0;transform-origin:0 0}
+.el svg{position:absolute;left:0;top:0;overflow:visible}
+.el path{stroke-linecap:round;stroke-linejoin:round}
+.tx{position:absolute;white-space:nowrap;line-height:1.1}
+.tx.hand{font-family:Patrick,cursive}
+.tx.mono{font-family:'Ubuntu Mono',Consolas,monospace}
+.tx .w{display:inline-block}
+.im{position:absolute;display:block}
+#term{position:absolute;left:1000px;top:520px;width:1600px;height:1000px;transform-origin:0 0;transform:scale(.1875);background:#300a24;overflow:hidden;z-index:3}
+#term .ln{position:absolute;left:80px;font-family:'Ubuntu Mono',monospace;white-space:pre;color:#f2eef0;line-height:1.2}
+#term svg{position:absolute;left:0;top:0;overflow:visible}
+#term .cur{display:inline-block;width:.5em;height:1em;background:#f2eef0;vertical-align:-.15em}
+#term .star{display:inline-block;transform-origin:50% 55%}
+</style></head><body>
+<div id="stage"><div id="world"><div id="term"></div></div><div id="paper"><div id="paperIn"></div></div><div id="gtop"><div id="gterm"></div></div></div>
+<script src="intro.js"></script>
+<script src="hud.js"></script>
+</body></html>

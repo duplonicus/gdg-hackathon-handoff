@@ -1,0 +1,24 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Shot 4 to 5</title>
+<style>
+@font-face{font-family:Patrick;src:url(assets/patrick.woff2) format('woff2')}
+html,body{margin:0;background:#333;overflow:hidden}
+#stage{position:relative;width:1920px;height:1080px;overflow:hidden;background:#fbfaf5;color:#2b2b2b}
+#world{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0}
+.el{position:absolute;left:0;top:0;transform-origin:0 0}
+.el svg{position:absolute;left:0;top:0;overflow:visible}
+.el path{stroke-linecap:round;stroke-linejoin:round}
+.tx{position:absolute;white-space:nowrap;line-height:1.1}
+.tx.hand{font-family:Patrick,cursive}
+.tx.mono{font-family:'Ubuntu Mono',Consolas,monospace}
+.tx .w{display:inline-block}
+.im{position:absolute;display:block}
+#footage{position:absolute;inset:0;z-index:50;display:none;flex-direction:column;align-items:center;justify-content:center;background:#1d1f22;color:#e8e6e1;font-family:'Ubuntu Mono',monospace}
+#footage .lab{font-size:54px;max-width:1500px;text-align:center}
+#footage .dur{font-size:34px;color:#9a978f;margin-top:28px}
+</style></head><body>
+<div id="stage"><div id="world"></div><div id="footage"><div class="lab"></div><div class="dur"></div></div></div>
+<script>window.FILM_MODE='shot'; window.FILM_SHOT=[4,5,0.6,2.4,2.0];</script>
+<script src="film.js"></script>
+<script src="hud.js"></script>
+</body></html>

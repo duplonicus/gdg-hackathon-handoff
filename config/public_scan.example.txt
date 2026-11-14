@@ -1,0 +1,4 @@
+# Copy to config/public_scan.local.txt (git ignores it) and list the private words scripts/export_public.py
+# should flag in the public copy: one regular expression per line, # for comments.
+(?i)\bjane\b
+(?i)janedoe42
